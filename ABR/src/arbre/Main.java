@@ -1,5 +1,6 @@
 package arbre;
 
+import java.util.Iterator;
 
 public class Main {
 
@@ -16,6 +17,11 @@ public class Main {
 		abr.add(9);
 		
 		System.out.println(abr.toString());
+		
+		Iterator<Integer> it= abr.iterator();
+		
+		
+		
 		
 		
 	}
