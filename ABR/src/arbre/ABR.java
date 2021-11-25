@@ -270,7 +270,6 @@ public class ABR<E> extends AbstractCollection<E> {
 	// TODO : voir quelles autres methodes il faut surcharger
 	@Override
 	public boolean add(E e) {
-		
 		if(racine == null) {
 			Noeud noeud = new Noeud(e);
 			racine = noeud;
@@ -283,27 +282,34 @@ public class ABR<E> extends AbstractCollection<E> {
 				} else {
 					ABR abrtmp = new ABR<>();
 					abrtmp.racine = racine.gauche;
-					return abrtmp.add(e);
+					abrtmp.add(e);
 				}
 				
 			} else if(e.equals(racine.cle)){
-				System.out.println("Element " + e + " déjà existant (Non ajouté)");
+						System.out.println("Element " + e + " déjà existant (Non ajouté)");
+						return false;
 				
-			} else {
-				if(racine.droit == null) {
-					Noeud noeud = new Noeud(e);
-					racine.droit= noeud;
-					noeud.pere = racine;
-				} else {
-					ABR abrtmp = new ABR<>();
-					abrtmp.racine = racine.droit;
-					return abrtmp.add(e);
+					} else {
+							if(racine.droit == null) {
+								Noeud noeud = new Noeud(e);
+								racine.droit= noeud;
+								noeud.pere = racine;
+							} else {
+								ABR abrtmp = new ABR<>();
+								abrtmp.racine = racine.droit;
+								abrtmp.add(e);
+						
+							}
 					
-				}
-				
-			}
+					}
 		
 		}
+		
+		this.taille = this.taille + 1;
+		if(racine.cle.equals(5)) {
+			System.out.println("taille " + taille);
+		}
+		
 		
 		/*
 		if(racine.cle.equals(4)) {
@@ -317,8 +323,8 @@ public class ABR<E> extends AbstractCollection<E> {
 		if(racine.cle.equals(8)) {
 			System.out.println("Le suivant de " + racine.cle + " est : " + racine.suivant().cle);
 		}
-		
-		if(racine.cle.equals(7)) {
+		*/
+		/*if(racine.cle.equals(7)) {
 			System.out.println("Le suivant de " + racine.cle + " est : " + racine.suivant().cle);
 			System.out.println("Le suivant de " + racine.droit.cle + " est : " + racine.droit.suivant().cle);
 		}*/
