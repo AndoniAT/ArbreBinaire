@@ -5,7 +5,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("Creation d'arbre");
-		ABR abr = new ABR();
+		ABR<Integer> abr = new ABR<>();
 		abr.add(5);
 		abr.add(2);
 		abr.add(10);
