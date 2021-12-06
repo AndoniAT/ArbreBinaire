@@ -25,9 +25,10 @@ public class Main {
 		//it.remove();
 		it.next();
 		it.remove();
-		/*while(it.hasNext()) {
+		it = abr.iterator();
+		while(it.hasNext()) {
 			it.next();
-		}*/
+		}
 		
 		
 		

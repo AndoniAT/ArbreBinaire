@@ -266,9 +266,17 @@ public class ABR<E> extends AbstractCollection<E> {
 		
 		// hay que usar una exepcion (next debe ser llamado primero IllegalStateException)
 		public void remove() {
-			System.out.println("Remover : " + noeudIterator.cle);
+			/*System.out.println("Remover : " + noeudIterator.cle);
 			System.out.println("Remover : " + noeudIterator.precedent().cle);
+			Noeud noeudASupprimer = noeudIterator.precedent();*/
 			
+			/*if(!noeudASupprimer.ilyaFilsDroit() && !noeudASupprimer.estFilsGauche()) {
+				noeudASupprimer = null;
+				noeudASupprimer = noeudIterator;
+				
+			}*/
+			
+			//System.out.println("Removidooooo = " + racine.minimum().cle);
 			
 			
 			
