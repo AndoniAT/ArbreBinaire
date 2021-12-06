@@ -59,6 +59,7 @@ public class ABR<E> extends AbstractCollection<E> {
 		 *         grande cle
 		 */
 		Noeud suivant() {
+			
 			if(ilyaFilsDroit()) {
 				return this.droit.minimum();
 			}
@@ -131,7 +132,7 @@ public class ABR<E> extends AbstractCollection<E> {
 	// Consructeurs
 
 	/**
-	 * Crée un arbre vide. Les Elements sont ordonnes selon l'ordre naturel
+	 * Cree un arbre vide. Les Elements sont ordonnes selon l'ordre naturel
 	 */
 	public ABR() {
 		racine = null;
@@ -157,11 +158,11 @@ public class ABR<E> extends AbstractCollection<E> {
 	}
 
 	/**
-	 * Constructeur par recopie. Crée un arbre qui contient les mêmes éléments
-	 * que c. L'ordre des éléments est l'ordre naturel.
+	 * Constructeur par recopie. Creer un arbre qui contient les memes Elements
+	 * que c. L'ordre des Elements est l'ordre naturel.
 	 * 
 	 * @param c
-	 *            la collection à copier
+	 *            la collection � copier
 	 */
 	public ABR(Collection<? extends E> c) {
 		// TODO
@@ -177,32 +178,32 @@ public class ABR<E> extends AbstractCollection<E> {
 		return taille;
 	}
 
-	// Quelques méthodes utiles
+	// Quelques methodes utiles
 
 	/**
-	 * Recherche une clé. Cette méthode peut être utilisée par
+	 * Recherche une cle. Cette methode peut etre utilise par
 	 * {@link #contains(Object)} et {@link #remove(Object)}
 	 * 
 	 * @param o
-	 *            la clé à chercher
-	 * @return le noeud qui contient la clé ou null si la clé n'est pas trouvée.
+	 *            la cle a� chercher
+	 * @return le noeud qui contient la cle ou null si la cle n'est pas trouvee.
 	 */
 	private Noeud rechercher(Object o) {
 		return null;
 	}
 
 	/**
-	 * Supprime le noeud z. Cette méthode peut être utilisée dans
+	 * Supprime le noeud z. Cette methode peut etre utilisee dans
 	 * {@link #remove(Object)} et {@link Iterator#remove()}
 	 * 
 	 * @param z
-	 *            le noeud à supprimer
-	 * @return le noeud contenant la clé qui suit celle de z dans l'ordre des
-	 *         clés. Cette valeur de retour peut être utile dans
+	 *            le noeud a� supprimer
+	 * @return le noeud contenant la cle qui suit celle de z dans l'ordre des
+	 *         cl�es. Cette valeur de retour peut �tre utile dans
 	 *         {@link Iterator#remove()}
 	 */
 	private Noeud supprimer(Noeud z) {
-		// TODO
+
 		return null;
 	}
 
@@ -213,18 +214,31 @@ public class ABR<E> extends AbstractCollection<E> {
 	 */
 	private class ABRIterator implements Iterator<E> {
 		
+		Noeud noeudIterator;
+		public ABRIterator() {
+			noeudIterator = racine.minimum();
+			System.out.println(noeudIterator.cle);
+		}
+		
 		public boolean hasNext() {
-			// TODO
-			return false;
+			if(noeudIterator.suivant() != noeudIterator) {
+				return true;
+			} else {
+				return false;
+				}
 		}
 
 		public E next() {
-			// TODO		
+			if(this.hasNext()) {
+				noeudIterator = noeudIterator.suivant();
+				System.out.println(noeudIterator.cle);
+			}
 			return null;
 		}
 
 		public void remove() {
-			// TODO
+			System.out.println("Removeeer");
+			supprimer(noeudIterator);
 		}
 	}
 

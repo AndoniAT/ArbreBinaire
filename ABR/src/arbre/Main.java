@@ -2,6 +2,8 @@ package arbre;
 
 import java.util.Iterator;
 
+import javax.print.attribute.standard.MediaSize.Other;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -18,7 +20,15 @@ public class Main {
 		
 		System.out.println(abr.toString());
 		
-		Iterator<Integer> it= abr.iterator();
+		Iterator<Integer> it = abr.iterator();
+		//System.out.println(it.hasNext());
+		it.remove();
+		while(it.hasNext()) {
+			it.next();
+		}
+		
+		
+		
 		
 		
 		
