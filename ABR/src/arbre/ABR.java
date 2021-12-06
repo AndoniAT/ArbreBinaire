@@ -90,7 +90,7 @@ public class ABR<E> extends AbstractCollection<E> {
 		 *         grande cle
 		 */
 		Noeud precedent() {
-			Noeud n = racine;
+			Noeud n = racine.minimum();
 			if(n.suivant() == this) {
 				return n;
 			} else {
@@ -266,7 +266,9 @@ public class ABR<E> extends AbstractCollection<E> {
 		
 		// hay que usar una exepcion (next debe ser llamado primero IllegalStateException)
 		public void remove() {
-			System.out.println("Remover : " + noeudIterator. );
+			System.out.println("Remover : " + noeudIterator.cle);
+			System.out.println("Remover : " + noeudIterator.precedent().cle);
+			
 			
 			
 			
