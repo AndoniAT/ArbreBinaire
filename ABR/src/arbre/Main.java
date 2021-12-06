@@ -21,11 +21,15 @@ public class Main {
 		System.out.println(abr.toString());
 		
 		Iterator<Integer> it = abr.iterator();
-		//System.out.println(it.hasNext());
+		
+		//it.remove();
+		it.next();
 		it.remove();
-		while(it.hasNext()) {
+		/*while(it.hasNext()) {
 			it.next();
-		}
+		}*/
+		
+		
 		
 		
 		

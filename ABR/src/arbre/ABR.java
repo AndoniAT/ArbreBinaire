@@ -82,6 +82,23 @@ public class ABR<E> extends AbstractCollection<E> {
 			return null;
 		}
 		
+		/**
+		 * Renvoie le predecesseur de ce noeud
+		 * 
+		 * @return le noeud contenant la cle predecesseure de la cle de ce noeud dans
+		 *         l'ordre des cles, null si c'es le noeud contenant la plus
+		 *         grande cle
+		 */
+		Noeud precedent() {
+			Noeud n = racine;
+			if(n.suivant() == this) {
+				return n;
+			} else {
+				return n.precedent();
+			}
+		}
+		
+		
 		private boolean estFilsGauche() {
 			if(this == this.pere.gauche) {
 				return true;
@@ -124,8 +141,6 @@ public class ABR<E> extends AbstractCollection<E> {
 		
 		
 	}
-	
-	
 	
 	// ---------------------------------------------
 
@@ -203,7 +218,12 @@ public class ABR<E> extends AbstractCollection<E> {
 	 *         {@link Iterator#remove()}
 	 */
 	private Noeud supprimer(Noeud z) {
-
+		Noeud y;
+		if(!z.ilyaFilsGauche() && !z.ilyaFilsDroit()) {
+			y = z;
+			y = null;
+		}
+		
 		return null;
 	}
 
@@ -214,32 +234,45 @@ public class ABR<E> extends AbstractCollection<E> {
 	 */
 	private class ABRIterator implements Iterator<E> {
 		
-		Noeud noeudIterator;
+		private Noeud noeudIterator;
+		private Noeud prec;
+		
 		public ABRIterator() {
+			// Valider aussi si l'arbre est a null
+			
 			noeudIterator = racine.minimum();
-			System.out.println(noeudIterator.cle);
 		}
 		
 		public boolean hasNext() {
+
+			
 			if(noeudIterator.suivant() != noeudIterator) {
 				return true;
 			} else {
 				return false;
-				}
+			}
 		}
 
 		public E next() {
+			// Valider aussi si est a null
+			
 			if(this.hasNext()) {
+				prec = noeudIterator;
 				noeudIterator = noeudIterator.suivant();
-				System.out.println(noeudIterator.cle);
+				System.out.println("Antes : " + prec.cle + "  - Despues : " + noeudIterator.cle);
 			}
-			return null;
+			return noeudIterator.cle;
 		}
-
+		
+		// hay que usar una exepcion (next debe ser llamado primero IllegalStateException)
 		public void remove() {
-			System.out.println("Removeeer");
-			supprimer(noeudIterator);
+			System.out.println("Remover : " + noeudIterator. );
+			
+			
+			
+			//supprimer(noeudIterator);
 		}
+		
 	}
 
 	// Pour un "joli" affichage
