@@ -21,7 +21,10 @@ public class Main {
 		Iterator<Integer> it = abr.iterator();
 		
 		//abr.remove(1);
-		System.out.println("Miraaa: " + abr.contains(it));
+		it.next();
+		it.next();
+		it.next();
+		System.out.println("Existe ? : " + abr.contains(38));
 		
 		//System.out.println(abr.toString());
 		//it.remove();

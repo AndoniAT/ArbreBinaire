@@ -91,11 +91,33 @@ public class ABR<E> extends AbstractCollection<E> {
 		 *         grande cle
 		 */
 		Noeud precedent() {
-			Noeud n = racine.minimum();
-			if(n.suivant() == this) {
-				return n;
+			Noeud noeudRacine  = this;
+			//System.out.println("Pere  : " + this.suivant().cle);
+			while(noeudRacine.pere != null) {
+				//System.out.println("hola");
+				noeudRacine = noeudRacine.pere;
+			}
+
+			if(noeudRacine.minimum().equals(this) && !this.estRacine()) {
+				//System.out.println("Cet element n'a pas d'element precedent");
+				return this;
+			}
+			
+			
+			Noeud n = noeudRacine.minimum();
+			while(!n.isPrecedent(this)) {
+				//System.out.println("N : " + n.cle + " es precedent de " + this.cle);
+				n = n.suivant();
+			}
+			
+			return n;
+		}
+		
+		private boolean isPrecedent(Noeud n) {
+			if(this.suivant() == n) {
+				return true;
 			} else {
-				return n.precedent();
+				return false;
 			}
 		}
 		
@@ -196,13 +218,19 @@ public class ABR<E> extends AbstractCollection<E> {
 
 	@Override
 	public boolean contains(Object o){
-		Iterator<Integer> it = (Iterator<Integer>) this.iterator();;
+		ABRIterator abrIterator = (ABR<E>.ABRIterator) this.iterator();
 		
-		//Noeud n = (ABR<E>.Noeud) o;
-		/*while(!it.equals(o) ) {
-			n.suivant();
-		}*/
-		
+		do {
+			if(abrIterator.noeudIterator.cle.equals(o)) {
+				return true;
+			}
+			if (!abrIterator.hasNext())
+				break;
+			
+			abrIterator.next();
+			
+		} while(abrIterator.hasPrec());
+		 			
 		return false;
 		
 	}
@@ -259,6 +287,14 @@ public class ABR<E> extends AbstractCollection<E> {
 
 			
 			if(noeudIterator.suivant() != noeudIterator) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		public boolean hasPrec() {
+			if(noeudIterator.precedent() != noeudIterator) {
 				return true;
 			} else {
 				return false;
