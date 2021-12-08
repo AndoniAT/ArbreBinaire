@@ -247,8 +247,8 @@ public class ABR<E> extends AbstractCollection<E> {
 	 */
 	private class ABRIterator implements Iterator<E> {
 		
-		protected Noeud noeudIterator;
-		protected Noeud prec;
+		private Noeud noeudIterator;
+		private Noeud prec;
 		
 		public ABRIterator() {
 			// Valider aussi si l'arbre est a null
@@ -293,6 +293,14 @@ public class ABR<E> extends AbstractCollection<E> {
 			
 			
 			//supprimer(noeudIterator);
+		}
+		
+		public Noeud getNoeud() {
+			return noeudIterator;
+		}
+		
+		public Noeud getNoeudPrecedent() {
+			return prec;
 		}
 		
 	}
