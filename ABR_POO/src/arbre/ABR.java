@@ -1,5 +1,6 @@
 package arbre;
 
+
 import java.util.AbstractCollection;
 import java.util.Collection;
 import java.util.Comparator;
@@ -193,6 +194,18 @@ public class ABR<E> extends AbstractCollection<E> {
 		return taille;
 	}
 
+	@Override
+	public boolean contains(Object o){
+		Iterator<Integer> it = (Iterator<Integer>) this.iterator();;
+		
+		//Noeud n = (ABR<E>.Noeud) o;
+		/*while(!it.equals(o) ) {
+			n.suivant();
+		}*/
+		
+		return false;
+		
+	}
 	// Quelques methodes utiles
 
 	/**
@@ -234,12 +247,11 @@ public class ABR<E> extends AbstractCollection<E> {
 	 */
 	private class ABRIterator implements Iterator<E> {
 		
-		private Noeud noeudIterator;
-		private Noeud prec;
+		protected Noeud noeudIterator;
+		protected Noeud prec;
 		
 		public ABRIterator() {
 			// Valider aussi si l'arbre est a null
-			
 			noeudIterator = racine.minimum();
 		}
 		
@@ -284,7 +296,10 @@ public class ABR<E> extends AbstractCollection<E> {
 		}
 		
 	}
+	
 
+	
+	
 	// Pour un "joli" affichage
 
 	@Override

@@ -2,8 +2,6 @@ package arbre;
 
 import java.util.Iterator;
 
-import javax.print.attribute.standard.MediaSize.Other;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -22,13 +20,17 @@ public class Main {
 		
 		Iterator<Integer> it = abr.iterator();
 		
+		//abr.remove(1);
+		System.out.println("Miraaa: " + abr.contains(it));
+		
+		//System.out.println(abr.toString());
 		//it.remove();
-		it.next();
+		/*it.next();
 		it.remove();
 		it = abr.iterator();
 		while(it.hasNext()) {
 			it.next();
-		}
+		}*/
 		
 		
 		
