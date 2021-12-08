@@ -219,11 +219,10 @@ public class ABR<E> extends AbstractCollection<E> {
 	@Override
 	public boolean contains(Object o){
 		ABRIterator abrIterator = (ABR<E>.ABRIterator) this.iterator();
-		
 		do {
-			if(abrIterator.noeudIterator.cle.equals(o)) {
+			if(abrIterator.noeudIterator.cle.equals(o)) 
 				return true;
-			}
+			
 			if (!abrIterator.hasNext())
 				break;
 			
@@ -232,7 +231,6 @@ public class ABR<E> extends AbstractCollection<E> {
 		} while(abrIterator.hasPrec());
 		 			
 		return false;
-		
 	}
 	// Quelques methodes utiles
 
@@ -245,6 +243,19 @@ public class ABR<E> extends AbstractCollection<E> {
 	 * @return le noeud qui contient la cle ou null si la cle n'est pas trouvee.
 	 */
 	private Noeud rechercher(Object o) {
+		ABRIterator abrIterator = (ABR<E>.ABRIterator) this.iterator();
+				
+		do {
+			if(abrIterator.noeudIterator.cle.equals(o)) 
+			return abrIterator.noeudIterator;
+			
+			if (!abrIterator.hasNext())
+			break;
+				
+			abrIterator.next();
+				
+		} while(abrIterator.hasPrec());
+				 			
 		return null;
 	}
 
@@ -314,21 +325,7 @@ public class ABR<E> extends AbstractCollection<E> {
 		
 		// hay que usar una exepcion (next debe ser llamado primero IllegalStateException)
 		public void remove() {
-			/*System.out.println("Remover : " + noeudIterator.cle);
-			System.out.println("Remover : " + noeudIterator.precedent().cle);
-			Noeud noeudASupprimer = noeudIterator.precedent();*/
 			
-			/*if(!noeudASupprimer.ilyaFilsDroit() && !noeudASupprimer.estFilsGauche()) {
-				noeudASupprimer = null;
-				noeudASupprimer = noeudIterator;
-				
-			}*/
-			
-			//System.out.println("Removidooooo = " + racine.minimum().cle);
-			
-			
-			
-			//supprimer(noeudIterator);
 		}
 		
 		public Noeud getNoeud() {
