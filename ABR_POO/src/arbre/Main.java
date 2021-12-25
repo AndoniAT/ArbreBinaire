@@ -7,25 +7,41 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Creation d'arbre");
 		ABR<Integer> abr = new ABR<>();
+		abr.add(50);
+		abr.add(30);
+		abr.add(33);
+		abr.add(15);
+		abr.add(17);
+		abr.add(23);
+		abr.add(19);
+		abr.add(12);
+		abr.add(13);
 		abr.add(5);
-		abr.add(2);
-		abr.add(10);
-		abr.add(1);
-		abr.add(4);
-		abr.add(7);
-		abr.add(3);
+		abr.add(8);
 		abr.add(9);
+		abr.add(10);
+		abr.add(6);
+		abr.add(7);
+		abr.add(52);
+		abr.add(54);
+		abr.add(53);
+		abr.add(70);
+		abr.add(68);
+		abr.add(63);
+		abr.add(72);
 		
 		System.out.println(abr.toString());
 		
-		Iterator<Integer> it = abr.iterator();
+		Iterator<Integer> it = abr.iterator(); // 1
 		
-		//abr.remove(1);
-		it.next();
-		it.next();
-		it.next();
-		System.out.println("Existe ? : " + abr.contains(38));
+		//it.remove();
+		/*
+		it.next(); // 5
+		it.next(); // 7
+		it.next(); // 9
+		*/
 		
+		System.out.println(abr.toString());
 		//System.out.println(abr.toString());
 		//it.remove();
 		/*it.next();

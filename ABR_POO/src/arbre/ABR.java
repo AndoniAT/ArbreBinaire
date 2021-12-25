@@ -92,21 +92,17 @@ public class ABR<E> extends AbstractCollection<E> {
 		 */
 		Noeud precedent() {
 			Noeud noeudRacine  = this;
-			//System.out.println("Pere  : " + this.suivant().cle);
 			while(noeudRacine.pere != null) {
-				//System.out.println("hola");
 				noeudRacine = noeudRacine.pere;
 			}
 
 			if(noeudRacine.minimum().equals(this) && !this.estRacine()) {
-				//System.out.println("Cet element n'a pas d'element precedent");
 				return this;
 			}
 			
 			
 			Noeud n = noeudRacine.minimum();
 			while(!n.isPrecedent(this)) {
-				//System.out.println("N : " + n.cle + " es precedent de " + this.cle);
 				n = n.suivant();
 			}
 			
@@ -270,10 +266,29 @@ public class ABR<E> extends AbstractCollection<E> {
 	 *         {@link Iterator#remove()}
 	 */
 	private Noeud supprimer(Noeud z) {
-		Noeud y;
-		if(!z.ilyaFilsGauche() && !z.ilyaFilsDroit()) {
-			y = z;
-			y = null;
+		z.cle = null;
+		if(!z.ilyaFilsDroit() && !z.ilyaFilsGauche() && z.pere != null) { // feuille
+			if(z.estFilsGauche()) {
+				z.pere.gauche = null;
+			} else {
+				
+				z.pere.droit = null;
+				
+			}
+			z.pere = null;
+			return z;
+				
+		}
+		
+		if(z.ilyaFilsGauche()  && !z.ilyaFilsDroit()) {			
+			if(!z.gauche.ilyaFilsGauche() && !z.gauche.estFilsDroit()) {
+				z.cle = z.gauche.cle;
+				z.gauche.pere = z.pere;
+				if(z.estFilsDroit()) z.pere.droit = z.gauche;
+				else z.pere.gauche = z.gauche;
+			}
+			
+			
 		}
 		
 		return null;
@@ -325,6 +340,8 @@ public class ABR<E> extends AbstractCollection<E> {
 		
 		// hay que usar una exepcion (next debe ser llamado primero IllegalStateException)
 		public void remove() {
+			Noeud noeudSupprimer = rechercher(this.noeudIterator.cle);
+			supprimer(noeudSupprimer);
 			
 		}
 		
@@ -423,31 +440,10 @@ public class ABR<E> extends AbstractCollection<E> {
 			System.out.println("taille " + taille);
 		}
 		
-		
-		/*
-		if(racine.cle.equals(4)) {
-			System.out.println("mon fils droit is " + racine.gauche.cle);
-			System.out.println("Le suivant de " + racine.pere.cle + " est : " + racine.pere.suivant().cle);
-			System.out.println("Le suivant de " + racine.gauche.cle + " est : " + racine.gauche.suivant().cle);
-			System.out.println("Le suivant de " + racine.cle + " est : " + racine.suivant().cle);
-			System.out.println("Le suivant de " + racine.suivant().cle + " est : " + racine.suivant().suivant().cle);			
-		}
-		
-		if(racine.cle.equals(8)) {
-			System.out.println("Le suivant de " + racine.cle + " est : " + racine.suivant().cle);
-		}
-		*/
-		/*if(racine.cle.equals(7)) {
-			System.out.println("Le suivant de " + racine.cle + " est : " + racine.suivant().cle);
-			System.out.println("Le suivant de " + racine.droit.cle + " est : " + racine.droit.suivant().cle);
-		}*/
-		
-		
-		
 		return false;
 		
 	}
 	
 }
 	
-	
+	d
