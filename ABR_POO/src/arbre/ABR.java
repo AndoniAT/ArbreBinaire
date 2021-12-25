@@ -266,32 +266,36 @@ public class ABR<E> extends AbstractCollection<E> {
 	 *         {@link Iterator#remove()}
 	 */
 	private Noeud supprimer(Noeud z) {
-		z.cle = null;
-		if(!z.ilyaFilsDroit() && !z.ilyaFilsGauche() && z.pere != null) { // feuille
-			if(z.estFilsGauche()) {
-				z.pere.gauche = null;
-			} else {
-				
-				z.pere.droit = null;
-				
-			}
-			z.pere = null;
-			return z;
-				
-		}
+		Noeud y = null;
+		Noeud x = racine;
 		
-		if(z.ilyaFilsGauche()  && !z.ilyaFilsDroit()) {			
-			if(!z.gauche.ilyaFilsGauche() && !z.gauche.estFilsDroit()) {
-				z.cle = z.gauche.cle;
-				z.gauche.pere = z.pere;
-				if(z.estFilsDroit()) z.pere.droit = z.gauche;
-				else z.pere.gauche = z.gauche;
-			}
-			
-			
-		}
-		
-		return null;
+		if (z.gauche == null || z.droit == null)
+		    y = z;
+		  else
+		    y = z.suivant();
+		    // y est le nœud à détacher
+
+		  if (y.gauche != null)
+		    x = y.gauche;
+		  else
+		    x = y.droit;
+		    // x est le fils unique de y ou null si y n'a pas de fils
+
+		  if (x != null) x.pere = y.pere;
+
+		  if (y.pere == null) { // suppression de la racine
+		    racine = x;
+		  } else {
+		    if (y == y.pere.gauche)
+		      y.pere.gauche = x;
+		    else
+		      y.pere.droit = x;
+		  }
+
+		  if (y != z) z.cle = y.cle;
+		  	y = null;
+		  	
+		  return null;
 	}
 
 	/**
@@ -342,7 +346,6 @@ public class ABR<E> extends AbstractCollection<E> {
 		public void remove() {
 			Noeud noeudSupprimer = rechercher(this.noeudIterator.cle);
 			supprimer(noeudSupprimer);
-			
 		}
 		
 		public Noeud getNoeud() {

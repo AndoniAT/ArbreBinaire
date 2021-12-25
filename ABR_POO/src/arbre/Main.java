@@ -32,34 +32,15 @@ public class Main {
 		
 		System.out.println(abr.toString());
 		
-		Iterator<Integer> it = abr.iterator(); // 1
+		Iterator<Integer> it = abr.iterator();
 		
-		//it.remove();
-		/*
-		it.next(); // 5
-		it.next(); // 7
-		it.next(); // 9
-		*/
+		it.remove();
 		
 		System.out.println(abr.toString());
-		//System.out.println(abr.toString());
-		//it.remove();
-		/*it.next();
-		it.remove();
-		it = abr.iterator();
-		while(it.hasNext()) {
-			it.next();
-		}*/
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
 	}
 
 }
