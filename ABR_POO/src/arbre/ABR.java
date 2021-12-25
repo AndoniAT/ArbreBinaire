@@ -445,5 +445,3 @@ public class ABR<E> extends AbstractCollection<E> {
 	}
 	
 }
-	
-	d
