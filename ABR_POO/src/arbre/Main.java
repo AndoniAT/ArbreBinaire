@@ -33,13 +33,14 @@ public class Main {
 		
 		ABR<Integer> abr2 = new ABR<>(abr);
 		
-		
 		//System.out.println(abr.toString());
 		
 		Iterator<Integer> it = abr.iterator();
+		Iterator<Integer> it2 = abr2.iterator();
 		
-		it.remove();
+		it2.remove();
 		
+		System.out.println(abr.toString());
 		System.out.println(abr2.toString());
 		
 		

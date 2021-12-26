@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 
+
 /**
  * Implantation de l'interface Collection basée sur les arbres binaires de
  * recherche. Les éléments sont ordonnés soit en utilisant l'ordre naturel (cf
@@ -58,8 +59,57 @@ public class ABR<E> extends AbstractCollection<E> {
 		 *            la collection � copier
 		 */
 		public ABR(Collection<? extends E> c) {
-
+			racine = null;
+			taille = 0;
+			//comp = (e1, e2) -> ((Comparable) e1).compareTo((Comparable) e2);
+			
+			cmp = new Comparator<E>() {
+				public int compare(E e1, E e2) {
+					return  ((Comparable<E>) e1).compareTo(e2);
+				}
+			};
+			
+			System.out.println("hola");
+			//ABR<E> abr2 = new ABR<>();
+			
+			ABRIterator it = (ABR<E>.ABRIterator) c.iterator();
+			
+			System.out.println(it.noeudIterator.cle);
+			
+			while(it.noeudIterator.estFilsDroit() || it.noeudIterator.estFilsGauche()) {
+				it.next();
+			}
+			
+			add(it.noeudIterator.cle);
+			
+			addGauche(it.noeudIterator);
+			addDroit(it.noeudIterator);
+			
 		}
+		
+		private void addGauche(Noeud n) {
+			n = n.gauche;
+			
+			add(n.cle);
+			
+			if(n.ilyaFilsGauche())
+				addGauche(n);
+			
+			if(n.ilyaFilsDroit())
+				addDroit(n);
+		}
+		
+		private void addDroit(Noeud n) {
+			n = n.droit;
+			add(n.cle);
+			
+			if(n.ilyaFilsGauche())
+				addGauche(n);
+			
+			if(n.ilyaFilsDroit())
+				addDroit(n);	
+		}
+		
 
 		@Override
 		public Iterator<E> iterator() {
@@ -307,6 +357,13 @@ public class ABR<E> extends AbstractCollection<E> {
 				if (this.pere.estFilsGauche()) {
 					return this.pere.pere;
 				}
+				
+				if (this.pere.estFilsDroit()) {
+					Noeud n = this.pere;
+					while(!n.estFilsGauche()) n = n.pere;
+					n = n.pere;
+					return n;
+				}
 			}
 			
 			return null;
@@ -348,6 +405,10 @@ public class ABR<E> extends AbstractCollection<E> {
 		
 		
 		private boolean estFilsGauche() {
+			if(estRacine()) {
+				return false;
+			}
+			
 			if(this == this.pere.gauche) {
 				return true;
 			} else {
@@ -356,6 +417,10 @@ public class ABR<E> extends AbstractCollection<E> {
 		}
 		
 		private boolean estFilsDroit() {
+			if(estRacine()) {
+				return false;
+			}
+			
 			if(this == this.pere.droit) {
 				return true;
 			} else {
@@ -440,6 +505,7 @@ public class ABR<E> extends AbstractCollection<E> {
 			// Valider aussi si est a null
 			
 			if(this.hasNext()) {
+				
 				prec = noeudIterator;
 				noeudIterator = noeudIterator.suivant();
 				System.out.println("Antes : " + prec.cle + "  - Despues : " + noeudIterator.cle);
