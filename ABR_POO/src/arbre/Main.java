@@ -1,5 +1,6 @@
 package arbre;
 
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class Main {
@@ -42,6 +43,21 @@ public class Main {
 		
 		System.out.println(abr.toString());
 		System.out.println(abr2.toString());
+		
+		Comparator<Integer> c = new Comparator<Integer>() {
+			public int compare(Integer e1, Integer e2) {
+				return  ((Comparable<Integer>) e1).compareTo(e2);
+			}
+		};
+		
+		ABR<Integer> abr3 = new ABR<>(c);
+		
+		abr3.add(3);
+		abr3.add(4);
+		abr3.add(5);
+		abr3.add(1);
+		
+		System.out.println(abr3.toString());
 		
 		
 		

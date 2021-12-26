@@ -47,7 +47,10 @@ public class ABR<E> extends AbstractCollection<E> {
 		 * @param cmp le comparateur utilise pour definir l'ordre des Elements
 		 */
 		public ABR(Comparator<? super E> cmp) {
+			racine = null;
+			taille = 0;
 			
+			this.cmp = cmp;
 		}
 	
 	
