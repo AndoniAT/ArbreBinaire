@@ -57,6 +57,10 @@ public class Main {
 		abr3.add(5);
 		abr3.add(1);
 		
+		Iterator<Integer> itt = abr3.iterator();
+		itt.next();
+		itt.next();
+		itt.remove();
 		System.out.println(abr3.toString());
 		
 		

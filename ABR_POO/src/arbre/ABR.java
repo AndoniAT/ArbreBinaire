@@ -207,7 +207,9 @@ public class ABR<E> extends AbstractCollection<E> {
 
 			  if (y != z) z.cle = y.cle;
 			  	y = null;
-			  	
+			  
+			  taille--;
+			  System.out.println(taille);
 			  return null;
 		}
 	
